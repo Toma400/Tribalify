@@ -152,4 +152,4 @@ proc readJsonObject* (path: string, value: string): UObject = readJson(path, val
 ##### DICT
 #[ dict jako tuples that will be copied + appended into to solve non-mutability:
      TUPLE1.add(X):
-       (TUPLE1, X)
+       (TUPLE1, X) ]#
