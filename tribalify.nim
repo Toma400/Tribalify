@@ -38,6 +38,7 @@ import std/json
 type
   MessageTypes[T, I: int] =
     int | string | float | bool | seq[T] | array[I, T]
+  str* = string # alias for string
 
 #[--- PAIRS & TRIADS ------------------------------------------------------------
 Introduces Pair and Triad, data structures from Kotlin that let you work on
