@@ -13,6 +13,7 @@
     - pair(F,S)    - type that contains two values. Initialised with newPair()
     - triad(F,S,T) - type that contains three values. Initialised with newTriad()
   Aliases:
+    - str                           - alias for string type
     - puts(MessageTypes)            - alias for echo, but can take various types
                                       without stringifying
     - gets(?MessageTypes) >> string - alias for readLine(stdin), but can also

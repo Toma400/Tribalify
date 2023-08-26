@@ -4,6 +4,9 @@ indev programming language called Tribal.
 Tribalify offers Tribal features by adding them onto Nim experience by use of macros,
 templates and other procedures. They are all available under `tribalify` file.
 
+Take in mind that Tribalify's syntax may differ from pure Tribal. This is because
+the library tries to incorporate itself into current Nim language.
+
 ### Contents
 - [Why Tribalify](#why-tribalify)
 - [Installation & usage](#installation--usage)
@@ -14,8 +17,29 @@ templates and other procedures. They are all available under `tribalify` file.
   - [Syntax sugar](#syntax-sugar)
 
 ### Why Tribalify?
+Just because I love Nim, but there are some things from Tribal language ideas that
+I wanted to see there as well. Tribalify is actually heavily inspired by other few
+libraries that bring my beloved languages into Nim:
+  - classes      - introducing Python-like OOP with class type
+  - questionable - introducing Kotlin-like syntax sugar for Option
+  - results      - introducing Rust-like Result type
+  - with         - introducing JS-like deprecated 'with' feature
+
+So, with such legacy, Tribalify was made as final step. It will try to be as small
+as possible, yet trying to add as many Tribal-like features as it can.
 
 ### Installation & usage
+Write following command in your terminal to install Tribalify using Nimble:
+```commandline
+nimble install https://github.com/Toma400/Tribalify
+```
+Once it is done, you can use Tribalify features simply after importing:
+```nim
+import tribalify
+
+var i = newPair("Tom", "Parker")
+whisper("Name of your son is: " & i.first)
+```
 
 ### New types
 - `pair(F, S)` - convenience type for double values:
