@@ -124,31 +124,12 @@ macro `tab`* (cont_given: untyped): untyped =
     # list of tasks v___________v & adds block v______________________v & its body v____________v
     newStmtList(newSeq[NimNode]()) <! newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
 
-#[--- JSON NODES SIMPLIFIED -----------------------------------------------------
-Simplifier for JSON operations. Take in mind that this system, albeit cosy,
-is also heavily unreliable, as it won't return errors when value is not found.
-Additionally, it will convert values in -cast- way.
-Thus if JSON is bool -false-, but is casted to float, it will return -0.0-.
+#[--- COLLECTIONS --------------------------------------------------------------
+Adds collection types that are missing from Tribal.
 -------------------------------------------------------------------------------]#
-proc getString(j: JsonNode): string =
-    return getStr(j)
-type
-  UObject           = OrderedTable[string, JsonNode]
-  UArr[T, I: int]   = array[I, T]
-
-proc readJson* (path: string, value: string = ""): JsonNode =
-    let file = readFile(path)
-    let nod = parseJson(file)
-    if value != "": return nod[value] # returns specific value node
-    else:           return nod        # returns whole JSON node
-
-proc readJsonString* (path: string, value: string): string  = readJson(path, value).getString()
-proc readJsonFloat* (path: string, value: string): float    = readJson(path, value).getFloat()
-proc readJsonBool* (path: string, value: string): bool      = readJson(path, value).getBool()
-proc readJsonInt* (path: string, value: string): int        = readJson(path, value).getInt()
-proc readJsonArray* (path: string, value: string): UArr     = readJson(path, value).getArray()
-proc readJsonObject* (path: string, value: string): UObject = readJson(path, value).getFields()
-
+#[ Dictionary, so mutable tuple/varied-typed table ]#
+macro `@()`* (cont_given: untyped): untyped =
+  discard
 
 ##### DICT
 #[ dict jako tuples that will be copied + appended into to solve non-mutability:
