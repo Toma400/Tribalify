@@ -128,8 +128,8 @@ macro `tab`* (cont_given: untyped): untyped =
 Adds collection types that are missing from Tribal.
 -------------------------------------------------------------------------------]#
 #[ Dictionary, so mutable tuple/varied-typed table ]#
-macro `@()`* (cont_given: untyped): untyped =
-  discard
+# macro `@()`* (cont_given: untyped): untyped =
+#   discard
 
 ##### DICT
 #[ dict jako tuples that will be copied + appended into to solve non-mutability:
