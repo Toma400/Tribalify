@@ -123,15 +123,3 @@ macro `tab`* (cont_given: untyped): untyped =
         contents <! c
     # list of tasks v___________v & adds block v______________________v & its body v____________v
     newStmtList(newSeq[NimNode]()) <! newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
-
-#[--- COLLECTIONS --------------------------------------------------------------
-Adds collection types that are missing from Tribal.
--------------------------------------------------------------------------------]#
-#[ Dictionary, so mutable tuple/varied-typed table ]#
-# macro `@()`* (cont_given: untyped): untyped =
-#   discard
-
-##### DICT
-#[ dict jako tuples that will be copied + appended into to solve non-mutability:
-     TUPLE1.add(X):
-       (TUPLE1, X) ]#
