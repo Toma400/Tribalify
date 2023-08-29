@@ -32,6 +32,8 @@
     - tab - identator which does not start new scope, but is only aesthetical
             (operates the same way Tribal uses 'block' as opposed to its 'scope')
 ===============================================================================]#
+import std/typetraits
+import std/strformat
 import std/tables
 import std/macros
 import std/json
@@ -63,6 +65,15 @@ proc `$`* (p: pair): string =
   return "pair(" & $p.first & ", " & $p.second & ")"
 proc `$`* (t: triad): string =
   return "triad(" & $t.first & ", " & $t.second & ", " & $t.third & ")"
+#[--- Conversions for pair/triad ----------------------------------------------]#
+#[ Tuple -> Pair. Requires two values in tuple ]#
+proc toPair* [T, Y](tup: (T, Y)): pair[T, Y] =
+  if tup.tupleLen == 2: return newPair(tup[0], tup[1])
+  else:                 raise newException(Exception, fmt"Tried to convert tuple to pair, but used tuple of {tup.tupleLen} length instead of required 2.")
+#[ Tuple -> Triad. Requires three values in tuple ]#
+proc toTriad* [T, Y, X](tup: (T, Y, X)): triad[T, Y, X] =
+  if tup.tupleLen == 3: return newTriad(tup[0], tup[1], tup[2])
+  else:                 raise newException(Exception, fmt"Tried to convert tuple to triad, but used tuple of {tup.tupleLen} length instead of required 3.")
 
 #[--- QOL I/O -------------------------------------------------------------------
 Procedures that bring some friendly aliases from other languages, such as Ruby
@@ -102,7 +113,7 @@ template `<>`* (a, b: untyped): untyped =
     ((a or b) and not(a and b))
 
 #[ Alias for [if x == "a" or "b" or "c"] ]#
-proc isAny* [T](v: T, args: varargs[T]): bool =
+proc isAny* [T](v: T, args: varargs[T]): bool {.deprecated: "Simpler <T == arg OR arg OR ...> coming on release 0.2.0".} =
     for arg in args:
       if v == arg: return true
     return false
@@ -116,8 +127,14 @@ Works on every element that implements 'add(iterator, T)' function.
 template `<!`* (a, b: untyped): untyped =
     a.add(b)
 
+# template `<!`* (a: untyped, b: varargs[untyped]): untyped =
+#     a.add(b)
+
 template `!>`* (a, b: untyped): untyped =
     b.add(a)
+
+# template `!>`* (a: varargs[untyped], b: untyped): untyped =
+#     b.add(a)
 
 #[--- CONTROL FLOW --------------------------------------------------------------
 Useful tools from Tribal that let you control your code and its appearance.
@@ -129,3 +146,23 @@ macro `tab`* (cont_given: untyped): untyped =
         contents <! c
     # list of tasks v___________v & adds block v______________________v & its body v____________v
     newStmtList(newSeq[NimNode]()) <! newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
+
+# 0.2.0:
+  # - tab Named:
+  # - isAny albo 'x == a or b or c'
+  # - tuple to pair/triad
+
+#echo (1, 5).toPair
+
+# dumpTree:
+#   tab:
+#     discard
+#
+#   block:
+#     discard
+#
+#   block Named:
+#     discard
+#
+#   if x == "a" or x == "b" or x == "c":
+#     discard

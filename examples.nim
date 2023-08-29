@@ -13,6 +13,11 @@ let town2_king = newPair(town2, "Louis XIV")
 let town1_info = newTriad(town1, "Greece", 643_452) # triad (three values)
 let town2_info = newTriad(town2, "France", 2_102_650)
 
+# you can also convert tuples into pairs/triads if length of tuple matches
+echo (10, 15).toPair
+echo (10, 15, 20).toTriad
+echo (10, 15, 20, 50).toTriad # this should result in exception error
+
 # operator '&&' is alias for 'and'
 assert true && true == true
 assert true && false == false

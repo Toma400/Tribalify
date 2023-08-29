@@ -46,10 +46,12 @@ whisper("Name of your son is: " & i.first)
   - initialise with `newPair()` proc
   - can be stringified (`$`) to get string repr
   - use `.first` and `.second` to get specific field
+  - use `.toPair` to convert tuple of 2 values to pair
 - `triad(F, S, T)` - convenience type for triple values:
   - initialise with `newTriad()` proc
   - can be stringified (`$`) to get string repr
   - use `.first`, `.second` and `.third` to get specific field
+  - use `.toTriad` to convert tuple of 3 values to triad
 
 ### Aliases
 - Types:
