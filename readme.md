@@ -40,18 +40,25 @@ import tribalify
 var i = newPair("Tom", "Parker")
 whisper("Name of your son is: " & i.first)
 ```
+Nimble by default installs latest release of Tribalify, so you may not be able to
+use currently indev features (marked with ⚙️ emoji).  
+If you want to play with new features before library updates, you can also use
+this command in terminal instead:
+```
+nimble install https://github.com/Toma400/Tribalify@#HEAD
+```
 
 ### New types
 - `pair(F, S)` - convenience type for double values:
   - initialise with `newPair()` proc
   - can be stringified (`$`) to get string repr
   - use `.first` and `.second` to get specific field
-  - use `.toPair` to convert tuple of 2 values to pair
+  - use `.toPair` to convert tuple of 2 values to pair ⚙️
 - `triad(F, S, T)` - convenience type for triple values:
   - initialise with `newTriad()` proc
   - can be stringified (`$`) to get string repr
   - use `.first`, `.second` and `.third` to get specific field
-  - use `.toTriad` to convert tuple of 3 values to triad
+  - use `.toTriad` to convert tuple of 3 values to triad ⚙️
 
 ### Aliases
 - Types:
@@ -82,7 +89,7 @@ echo y # will work nicely, 'y' is in the same scope
 - `<!` and `!>`
   - append elements to mutable collection-like types. Works on every type that
   implements `.add` function, as it basically uses it in template
-- `isAny(T, varargs[T])`
+- `isAny(T, varargs[T])` ⚙️
   - let you check if first argument is any of next args. Equivalent of
   `if T == A or T == B or T == C ... `.
 
