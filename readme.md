@@ -80,6 +80,9 @@ echo y # will work nicely, 'y' is in the same scope
 - `<!` and `!>`
   - append elements to mutable collection-like types. Works on every type that
   implements `.add` function, as it basically uses it in template
+- `isAny(T, varargs[T])`
+  - let you check if first argument is any of next args. Equivalent of
+  `if T == A or T == B or T == C ... `.
 
 ---
 If you don't know how any of those concepts should be written, look at `examples.nim`

@@ -101,6 +101,12 @@ template `||`* (a, b: untyped): untyped =
 template `<>`* (a, b: untyped): untyped =
     ((a or b) and not(a and b))
 
+#[ Alias for [if x == "a" or "b" or "c"] ]#
+proc isAny* [T](v: T, args: varargs[T]): bool =
+    for arg in args:
+      if v == arg: return true
+    return false
+
 #[--- QOL LIST MANAGERS ---------------------------------------------------------
 Tribal-based symbols of adding to iterable open types of data (sequences). Pushes
 value from ! symbol to the list located at the arrow tip.

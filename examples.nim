@@ -30,5 +30,7 @@ assert false <> false == false
 whisper "This works just like echo"
 var town3 = scribe "And here you can readLine from stdin, as well as echo the message beforehand"
 
-# <! adds element from '!' side into list on the left. !> works in reversed way
-list_of_towns <! town3
+# isAny let you check multiple values without doing tedious 'town3 == X or town3 == Y or town3 == Z'
+if not town3.isAny(town1, town2):
+    # <! adds element from '!' side into list on the left. !> works in reversed way
+    list_of_towns <! town3
