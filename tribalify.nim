@@ -49,12 +49,12 @@ objects with two or three values.
 -------------------------------------------------------------------------------]#
 type
   pair*[F,S] = object
-    first:  F
-    second: S
+    first*:  F
+    second*: S
   triad*[F,S,T] = object
-    first:  F
-    second: S
-    third:  T
+    first*:  F
+    second*: S
+    third*:  T
 proc newPair* [F,S](f: F, s: S): pair[F,S] =
   return pair[F,S](first: f, second: s)
 proc newTriad* [F,S,T](f: F, s: S, t: T): triad[F,S,T] =
@@ -146,16 +146,20 @@ macro `tab`* (cont_given: untyped): untyped =
         contents <! c
     # list of tasks v___________v & adds block v______________________v & its body v____________v
     newStmtList(newSeq[NimNode]()) <! newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
+    # newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
+    # newBlockStmt(newStmtList(contents))
 
 # 0.2.0:
   # - tab Named:
   # - isAny albo 'x == a or b or c'
-  # - tuple to pair/triad
 
 #echo (1, 5).toPair
 
 # dumpTree:
 #   tab:
+#     discard
+#
+#   tab Test:
 #     discard
 #
 #   block:

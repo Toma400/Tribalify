@@ -96,3 +96,16 @@ echo y # will work nicely, 'y' is in the same scope
 ---
 If you don't know how any of those concepts should be written, look at `examples.nim`
 file to see code references.
+
+<!-- CHANGELOG:
+- 0.1.0:
+  - Added pair/triad types
+  - Added several aliases (str, or/and/xor operators, echo/readLine)
+  - Added `tab` key
+  - Added `<!` and `!>` sugar
+- 0.2.0:
+  - Added `isAny` function
+  - Added tuple conversions to pair/triad
+  - Fixed:
+    - Not accessible pair/triad fields
+-->
