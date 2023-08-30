@@ -61,9 +61,9 @@ proc newTriad* [F,S,T](f: F, s: S, t: T): triad[F,S,T] =
   return triad[F,S,T](first: f, second: s, third: t)
 #[ Stringifying procedures for Pair and Triad type.
    For it to work, values need to be stringifyable. ]#
-proc `$`* (p: pair): string =
+proc `$`* [T, Y](p: pair[T, Y]): string =
   return "pair(" & $p.first & ", " & $p.second & ")"
-proc `$`* (t: triad): string =
+proc `$`* [T, Y, X](t: triad[T, Y, X]): string =
   return "triad(" & $t.first & ", " & $t.second & ", " & $t.third & ")"
 #[--- Conversions for pair/triad ----------------------------------------------]#
 #[ Tuple -> Pair. Requires two values in tuple ]#
