@@ -62,9 +62,9 @@ proc newTriad* [F,S,T](f: F, s: S, t: T): triad[F,S,T] =
 #[ Stringifying procedures for Pair and Triad type.
    For it to work, values need to be stringifyable. ]#
 proc `$`* [T, Y](p: pair[T, Y]): string =
-  return "pair(" & $p.first & ", " & $p.second & ")"
+  return fmt"pair({p.first}. {p.second})"
 proc `$`* [T, Y, X](t: triad[T, Y, X]): string =
-  return "triad(" & $t.first & ", " & $t.second & ", " & $t.third & ")"
+  return fmt"triad({t.first}, {t.second}, {t.third})"
 #[--- Conversions for pair/triad ----------------------------------------------]#
 #[ Tuple -> Pair. Requires two values in tuple ]#
 proc toPair* [T, Y](tup: (T, Y)): pair[T, Y] =
@@ -151,7 +151,7 @@ macro `tab`* (cont_given: untyped): untyped =
 
 # 0.2.0:
   # - tab Named:
-  # - isAny albo 'x == a or b or c'
+  # - isAny albo 'x == a or b or c' albo 'x == a | b | c' (look at: https://nim-lang.org/docs/system.html#%7C%2Ctypedesc%2Ctypedesc)
 
 #echo (1, 5).toPair
 

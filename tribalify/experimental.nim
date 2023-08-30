@@ -1,3 +1,9 @@
+#[ TRIBALIFY / EXPERIMENTAL ]#
+#[
+    Used to experiment with new features, as well as adding the ones
+    I see as too radical for normal Tribalify use
+]#
+
 import std/typetraits
 
 proc anyIt [T](comp: T, vars: tuple): bool =
