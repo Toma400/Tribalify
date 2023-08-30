@@ -15,6 +15,7 @@ the library tries to incorporate itself into current Nim language.
   - [Aliases](#aliases)
   - [Functionalities](#functionalities)
   - [Syntax sugar](#syntax-sugar)
+- [Experimental features](#experimental)
 
 ### Why Tribalify?
 Just because I love Nim, but there are some things from Tribal language ideas that
@@ -97,6 +98,11 @@ echo y # will work nicely, 'y' is in the same scope
 If you don't know how any of those concepts should be written, look at `examples.nim`
 file to see code references.
 
+---
+### Experimental
+You can use `import tribalify/experimental` to import features that are experimental
+and not ready to use yet. Check `experimental.nim` file for further details.
+
 <!-- CHANGELOG:
 - 0.1.0:
   - Added pair/triad types
@@ -104,7 +110,7 @@ file to see code references.
   - Added `tab` key
   - Added `<!` and `!>` sugar
 - 0.2.0:
-  - Added `isAny` function
+  - Added `isAny` and `isAll` functions
   - Added tuple conversions to pair/triad
   - Fixed:
     - Not accessible pair/triad fields

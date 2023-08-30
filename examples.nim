@@ -1,3 +1,4 @@
+import tribalify/experimental # use this import to use experimental features
 import tribalify
 
 tab:     # 'tab' sets visual identation section

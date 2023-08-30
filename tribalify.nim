@@ -80,21 +80,15 @@ Procedures that bring some friendly aliases from other languages, such as Ruby
 and Python. Allow for less cautious writing of standard I/O procedures.
 -------------------------------------------------------------------------------]#
 #[ Alias for 'echo', but you don't need to stringify primitive types ]#
-proc puts* (msg: MessageTypes) =
-    case $typeof(msg):
-      of "string": echo msg
-      else:        echo $msg
-
-#[ Alias for readLine which mimicks Python's possibility to write before getting input ]#
-proc gets* (msg: MessageTypes = ""): string =
-    if msg != "": puts(msg)
-    return readLine(stdin)
-
-#[ Tribal aliases ]#
 proc whisper* (msg: MessageTypes) =
-    puts(msg)
+    echo(msg)
+#[ Alias for readLine which mimicks Python's possibility to write before getting input ]#
 proc scribe* (msg: MessageTypes = ""): string =
-    return gets(msg)
+    if msg != "": whisper(msg)
+    return readLine(stdin)
+#[ More common (Ruby-like) aliases ]#
+proc puts* (msg: MessageTypes)         = whisper(msg)
+proc gets* (msg: MessageTypes): string = scribe(msg)
 
 #[--- QOL OPERATORS -------------------------------------------------------------
 Brings alternative for OR and AND operators, with Tribal stylised manner. Thanks
@@ -113,10 +107,16 @@ template `<>`* (a, b: untyped): untyped =
     ((a or b) and not(a and b))
 
 #[ Alias for [if x == "a" or "b" or "c"] ]#
-proc isAny* [T](v: T, args: varargs[T]): bool {.deprecated: "Simpler <T == arg OR arg OR ...> coming on release 0.2.0".} =
+proc isAny* [T](v: T, args: varargs[T]): bool {.deprecated: "Use <T =?= (varargs)> instead".} =
     for arg in args:
       if v == arg: return true
     return false
+
+#[ Alias for [if x == "a" and "b" and "c"] ]#
+proc isAll* [T](v: T, args: varargs[T]): bool {.deprecated: "Use <T =:= (varargs)> instead".} =
+    for arg in args:
+      if v != arg: return false
+    return args.len > 0
 
 #[--- QOL LIST MANAGERS ---------------------------------------------------------
 Tribal-based symbols of adding to iterable open types of data (sequences). Pushes
