@@ -93,6 +93,9 @@ echo y # will work nicely, 'y' is in the same scope
 - `isAny(T, varargs[T])` ⚙️
   - let you check if first argument is any of next args. Equivalent of
   `if T == A or T == B or T == C ... `.
+- `isAll(T, varargs[T])` ⚙️
+  - let you check if first argument is all of next args. Equivalent of
+  `if T == A and T == B and T == C ... `.
 
 ---
 If you don't know how any of those concepts should be written, look at `examples.nim`
@@ -113,5 +116,5 @@ and not ready to use yet. Check `experimental.nim` file for further details.
   - Added `isAny` and `isAll` functions
   - Added tuple conversions to pair/triad
   - Fixed:
-    - Not accessible pair/triad fields
+    - [NOT YET] Not accessible pair/triad fields
 -->

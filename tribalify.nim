@@ -65,6 +65,10 @@ proc `$`* [T, Y](p: pair[T, Y]): string =
   return fmt"pair({p.first}. {p.second})"
 proc `$`* [T, Y, X](t: triad[T, Y, X]): string =
   return fmt"triad({t.first}, {t.second}, {t.third})"
+proc first* [T, Y](t: pair[T, Y]): T =
+  return t.first
+proc second* [T, Y](t: pair[T, Y]): T =
+  return t.second
 #[--- Conversions for pair/triad ----------------------------------------------]#
 #[ Tuple -> Pair. Requires two values in tuple ]#
 proc toPair* [T, Y](tup: (T, Y)): pair[T, Y] =
