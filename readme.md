@@ -1,4 +1,4 @@
-# Tribalify
+![](tribalify.png)
 **Tribalify** is syntax sugar library aimed on creating Nim interface for 
 indev programming language called Tribal.  
 Tribalify offers Tribal features by adding them onto Nim experience by use of macros,
