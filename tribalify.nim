@@ -31,6 +31,7 @@
   Elegant code:
     - tab - identator which does not start new scope, but is only aesthetical
             (operates the same way Tribal uses 'block' as opposed to its 'scope')
+    - end - used in several variants as aesthetical signifier of identation end
 ===============================================================================]#
 import std/typetraits
 import std/strformat
@@ -152,6 +153,19 @@ macro `tab`* (cont_given: untyped): untyped =
     newStmtList(newSeq[NimNode]()) <! newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
     # newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
     # newBlockStmt(newStmtList(contents))
+
+#[--- END BLOCKS ------------------------------------------------------------------
+Ruby-like end templates. Purely visual, so can be used optionally and Nim won't
+care if you use wrong one! It is for helpful transition from Ruby/Pascal, or for
+those who like design of end type.
+-------------------------------------------------------------------------------]#
+template endIf*    = discard     # for conditions
+template endLoop*  = discard     # for loops
+template endProc*  = discard     # for procs
+template endBlock* = discard     # for block
+template endTab*   = discard     # for Tribalify 'tab'
+template endClass* = discard     # for Classes 'class'
+template endMisc*  = discard     # for all other types
 
 # 0.2.0:
   # - tab Named:

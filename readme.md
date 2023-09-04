@@ -86,6 +86,27 @@ tab:
   var y = 5
 echo y # will work nicely, 'y' is in the same scope
 ```
+- `end` - key used to optionally signify end of the identation. Aimed mostly at Ruby
+coders or those who like such system. Tribalify's `end` has several variations:
+```nim
+if 1 == 1:     # endIf for conditions
+  discard
+endIf
+
+while true:    # endLoop for loops
+  discard
+endLoop
+
+proc x(): string =   # endProc for procs
+  "Hello world"
+endProc
+
+block:
+  tab:
+    echo "It supports Tribalify's tab too!"
+  endTab
+endBlock
+```
 
 ### Syntax sugar
 - `<!` and `!>`
@@ -113,9 +134,8 @@ and not ready to use yet. Check `experimental.nim` file for further details.
   - Added several aliases (str, or/and/xor operators, echo/readLine)
   - Added `tab` key
   - Added `<!` and `!>` sugar
-- 0.2.0:
+- 0.1.1:
   - Added `isAny` and `isAll` functions
   - Added tuple conversions to pair/triad
-  - Fixed:
-    - [NOT YET] Not accessible pair/triad fields
+  - Added `end` templates
 -->
