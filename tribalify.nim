@@ -66,10 +66,12 @@ proc `$`* [T, Y](p: pair[T, Y]): string =
   return fmt"pair({p.first}. {p.second})"
 proc `$`* [T, Y, X](t: triad[T, Y, X]): string =
   return fmt"triad({t.first}, {t.second}, {t.third})"
-proc first* [T, Y](t: pair[T, Y]): T =
-  return t.first
-proc second* [T, Y](t: pair[T, Y]): T =
-  return t.second
+# proc first* [T, Y](p: pair[T, Y]): T =
+#   return p.first
+# proc second* [T, Y](p: pair[T, Y]): Y =
+#   return p.second
+# proc first* [T, Y, X](t: triad[T, Y, X]): T =
+#   return t.first
 #[--- Conversions for pair/triad ----------------------------------------------]#
 #[ Tuple -> Pair. Requires two values in tuple ]#
 proc toPair* [T, Y](tup: (T, Y)): pair[T, Y] =
@@ -85,15 +87,17 @@ Procedures that bring some friendly aliases from other languages, such as Ruby
 and Python. Allow for less cautious writing of standard I/O procedures.
 -------------------------------------------------------------------------------]#
 #[ Alias for 'echo', but you don't need to stringify primitive types ]#
-proc whisper* (msg: MessageTypes) =
+proc whisper* (msg: varargs[typed, `$`]) =
     echo(msg)
 #[ Alias for readLine which mimicks Python's possibility to write before getting input ]#
-proc scribe* (msg: MessageTypes = ""): string =
-    if msg != "": whisper(msg)
+proc scribe* (msg: varargs[typed, `$`]): string =
+    if msg.len == 0: whisper(msg)
     return readLine(stdin)
 #[ More common (Ruby-like) aliases ]#
+{.push deprecated:"Ruby functions in core module are deprecated. Please use their equivalents in tribalify/langs/ruby instead!".}
 proc puts* (msg: MessageTypes)         = whisper(msg)
 proc gets* (msg: MessageTypes): string = scribe(msg)
+{.pop.}
 
 #[--- QOL OPERATORS -------------------------------------------------------------
 Brings alternative for OR and AND operators, with Tribal stylised manner. Thanks
@@ -153,19 +157,6 @@ macro `tab`* (cont_given: untyped): untyped =
     newStmtList(newSeq[NimNode]()) <! newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
     # newBlockStmt(newNimNode(nnkEmpty)) <! newStmtList(contents)
     # newBlockStmt(newStmtList(contents))
-
-#[--- END BLOCKS ------------------------------------------------------------------
-Ruby-like end templates. Purely visual, so can be used optionally and Nim won't
-care if you use wrong one! It is for helpful transition from Ruby/Pascal, or for
-those who like design of end type.
--------------------------------------------------------------------------------]#
-template endIf*    = discard     # for conditions
-template endLoop*  = discard     # for loops
-template endProc*  = discard     # for procs
-template endBlock* = discard     # for block
-template endTab*   = discard     # for Tribalify 'tab'
-template endClass* = discard     # for Classes 'class'
-template endMisc*  = discard     # for all other types
 
 # 0.2.0:
   # - tab Named:
