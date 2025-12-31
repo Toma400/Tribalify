@@ -75,6 +75,12 @@ nimble install https://github.com/Toma400/Tribalify@#HEAD
   echo. Also aliased as `gets(str)`
 
 ### Functionalities
+- ability to multiply strings or characters
+```nim
+let str = "hello!"
+
+assert str * 2 == "hello!hello!"
+```
 - `tab` - key used to separate sections of code aesthetically. Similar to Nim's `block`,
 but does not create new scope. Example code:
 ```nim
@@ -138,4 +144,8 @@ and not ready to use yet. Check `experimental.nim` file for further details.
   - Added `isAny` and `isAll` functions
   - Added tuple conversions to pair/triad
   - Added `end` templates
+- 0.1.2:
+  - Separated Ruby-inspired features into distinct file
+  - Added Rust-inspired aliases in its own file
+  - Added Python's ability to multiply strings with integer
 -->

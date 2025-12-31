@@ -87,10 +87,10 @@ Procedures that bring some friendly aliases from other languages, such as Ruby
 and Python. Allow for less cautious writing of standard I/O procedures.
 -------------------------------------------------------------------------------]#
 #[ Alias for 'echo', but you don't need to stringify primitive types ]#
-proc whisper* (msg: varargs[typed, `$`]) =
+template whisper* (msg: varargs[typed, `$`]) =
     echo(msg)
 #[ Alias for readLine which mimicks Python's possibility to write before getting input ]#
-proc scribe* (msg: varargs[typed, `$`]): string =
+template scribe* (msg: varargs[typed, `$`]): string =
     if msg.len == 0: whisper(msg)
     return readLine(stdin)
 #[ More common (Ruby-like) aliases ]#
@@ -126,6 +126,11 @@ proc isAll* [T](v: T, args: varargs[T]): bool {.deprecated: "Use <T =:= (varargs
     for arg in args:
       if v != arg: return false
     return args.len > 0
+
+#[ Python-like multiplier for strings ]#
+proc `*`* (s: string | char, i: SomeInteger): string =
+    for _ in 1..i:
+      result.add(s)
 
 #[--- QOL LIST MANAGERS ---------------------------------------------------------
 Tribal-based symbols of adding to iterable open types of data (sequences). Pushes
